@@ -1,12 +1,13 @@
 package com.mellora.drugconsortium.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mellora.drugconsortium.dao.EmployeeRepo;
@@ -17,11 +18,9 @@ public class EmployeeController {
 	@Autowired
 	EmployeeRepo eRepo;
 
-	@GetMapping(path = "/employees/all")
+	@GetMapping(path = "/employee/all")
 	public List<Employee> getAllEmployees() {
-		List<Employee> employeeList = new ArrayList<>();
-		eRepo.findAll().forEach(employeeList::add);
-		return employeeList;
+		return eRepo.findAll();
 	}
 
 	@PostMapping(path = "/employee/add")
@@ -31,8 +30,14 @@ public class EmployeeController {
 	}
 	
 	@DeleteMapping(path = "/employee/remove")
-	public Employee removeEmployee(Employee employee) {
+	public Employee removeEmployee(@RequestParam(name = "eFirstName") String eFirstName, @RequestParam(name = "eLastName") String eLastName) {
+		Employee employee = eRepo.findEmployeeByFirstAndLastName(eFirstName, eLastName);
 		eRepo.delete(employee);
+		return employee;
+	}
+	
+	@PatchMapping(path = "/employee/update")
+	public Employee updateEmployee(Employee employee) {
 		return employee;
 	}
 }
