@@ -5,13 +5,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 
 @Entity
+@SequenceGenerator(name = "company_generator", sequenceName = "company_seq", allocationSize = 1, initialValue = 0)
 public class Company {
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	@Column(updatable = false, nullable = false)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "company_generator")
+	@Column(updatable = false, nullable = false, name = "ID")
 	private Long cId;
+	@Column(name = "NAME")
 	private String cName;
 
 	public Long getcId() {

@@ -1,14 +1,14 @@
 INSERT INTO EMPLOYEE
-	(E_ID, E_FIRST_NAME, E_LAST_NAME)
+	(ID, FIRST_NAME, LAST_NAME)
 VALUES
-	(employee_generator.NEXTVAL, 'Alexander', 'Mellor'),
-	(employee_generator.NEXTVAL, 'Christopher', 'Mellor'),
-	(employee_generator.NEXTVAL, 'Dale', 'Mellor'),
-	(employee_generator.NEXTVAL, 'Suzanne', 'Mellor');
+	(NEXTVAL('employee_seq'), 'Alexander', 'Mellor'),
+	(NEXTVAL('employee_seq'), 'Christopher', 'Mellor'),
+	(NEXTVAL('employee_seq'), 'Dale', 'Mellor'),
+	(NEXTVAL('employee_seq'), 'Suzanne', 'Mellor');
 
 INSERT INTO COMPANY
-	(C_ID, C_NAME)
+	(ID, NAME)
 VALUES
-	(0, 'Cognixia'),
-	(1, 'Sayre Police Department'),
-	(2, 'Elite Drug Consortium');
+	(NEXTVAL('company_seq'), 'Cognixia'),
+	(NEXTVAL('company_seq'), 'Sayre Police Department'),
+	(NEXTVAL('company_seq'), 'Elite Drug Consortium');

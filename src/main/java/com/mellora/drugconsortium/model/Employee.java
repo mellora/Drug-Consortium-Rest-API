@@ -8,13 +8,15 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 
 @Entity
+@SequenceGenerator(name = "employee_generator", sequenceName = "employee_seq", allocationSize = 1, initialValue = 0)
 public class Employee {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "employee_generator")
-	@SequenceGenerator(name = "employee_generator", sequenceName = "employee_seq", allocationSize = 1)
-	@Column(updatable = false, nullable = false)
+	@Column(updatable = false, nullable = false, name = "ID")
 	private Long eId;
+	@Column(name = "FIRST_NAME")
 	private String eFirstName;
+	@Column(name = "LAST_NAME")
 	private String eLastName;
 
 	public Long geteId() {
